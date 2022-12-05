@@ -6,6 +6,10 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
+  def search_name #gonna try to catch here
+    
+  end
+
   # GET /articles/1 or /articles/1.json
   def show
   end
