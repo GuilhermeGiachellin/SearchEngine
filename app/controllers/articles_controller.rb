@@ -1,13 +1,23 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
 
-  # GET /articles or /articles.json
   def index
-    @articles = Article.all
+    if params[:query].present?
+      @articles = Article.where("title LIKE ?", "#{params[:query]}%")
+    else 
+      @articles = Article.all 
+    end
+    @search = Search.all
+
+    if turbo_frame_request? #see if changes are being made
+      render partial: "articles", locals: { articles: @articles }
+    else
+      render :index
+    end
   end
 
   def search_name #gonna try to catch here
-    
+    @search_filter = Search.where(letter)
   end
 
   # GET /articles/1 or /articles/1.json
@@ -16,7 +26,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article = Article.new    
   end
 
   # GET /articles/1/edit
