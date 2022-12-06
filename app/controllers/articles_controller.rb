@@ -7,7 +7,8 @@ class ArticlesController < ApplicationController
     else 
       @articles = Article.all 
     end
-    @search = Search.all
+    
+    @searches = Search.all
 
     if turbo_frame_request? #see if changes are being made
       render partial: "articles", locals: { articles: @articles }
