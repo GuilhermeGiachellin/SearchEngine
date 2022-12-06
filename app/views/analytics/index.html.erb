@@ -1,5 +1,7 @@
 <p style="color: green"><%= notice %></p>
-
+<%= link_to destroy_user_session_path, method: :delete, class: "icons" do %>
+  Logout
+<% end %>
 <h1>Search Articles</h1>
 <%= form_with(url: user_analytics_path(current_user.id), method: :get, data: { 
   controller: "search-form", turbo_frame: "analytics", turbo_action: "advance"}) do |form| %>
@@ -10,3 +12,4 @@
   <div>
     <%= render "analytics", analytics: @analytics%>
   </div> 
+

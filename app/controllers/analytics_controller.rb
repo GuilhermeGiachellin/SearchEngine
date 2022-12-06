@@ -4,7 +4,10 @@ class AnalyticsController < ApplicationController
   # GET /analytics or /analytics.json
   def index    
     if params[:query].present?       
-      @analytics = Analytic.where("data LIKE ?","#{params[:query]}%")     
+      @analytics = Analytic.where("data LIKE ?","#{params[:query]}%") 
+      
+        Analytic.create(data: params[:query], user_id: current_user)
+         
     else 
       @analytics = Analytic.where(user_id: current_user)
     end  

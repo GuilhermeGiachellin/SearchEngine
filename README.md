@@ -1,24 +1,19 @@
-# README
+# Search Engine Analytics
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A search engine that focus on getting and updating the search analytics of one user using the turbo gem. It does not work as intended yet, as it can get the search history while the user in typing, but it does not save the new search.
 
-Things you may want to cover:
+## [Live version](https://budgeteer-ror.herokuapp.com/)
 
-* Ruby version
+## This project was built with
 
-* System dependencies
+- Ruby on Rails
+- Devise for user generation
+- CSS
 
-* Configuration
+## To get a local copy up and running follow these simple steps:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Go to the [repository page](https://github.com/GuilhermeGiachellin/SearchEngine).
+2. Clone it using git command `https://github.com/GuilhermeGiachellin/SearchEngine.git`.
+3. Run `bundle install` on your console.
+4. Run `yarn install` on your console.
+5. To see the live preview run `rails s` in your console and go to `http://localhost:3000/` in your browser.
