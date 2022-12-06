@@ -3,7 +3,28 @@ class AnalyticsController < ApplicationController
 
   # GET /analytics or /analytics.json
   def index
-    @analytics = Analytic.all
+    @user = current_user #gets current user
+    
+    if params[:query].present?       
+        @analytics = Analytic.where("data LIKE ?","#{params[:query]}%")  
+        p params[:query]
+        # if params[:query].eql?(@analytics.data)  
+        #   if params[:query].length > @analytic.data.length
+        #     Analytic.where("data LIKE ?","#{params[:query]}%").destroy  
+        #     Analytic.create(data: params[:query], user: @user)
+        #   end 
+        # end    
+    else 
+      @analytics = Analytic.all
+    end  
+
+    if turbo_frame_request? #see if changes are being made
+      render partial: "analytics", locals: { analytics: @analytics }
+    else
+      render :index
+    end
+
+    @articles = Article.all
   end
 
   # GET /analytics/1 or /analytics/1.json
@@ -60,11 +81,11 @@ class AnalyticsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_analytic
-      @analytic = Analytic.find(params[:id])
+      @analytic = Analytic.find(params[:user_id])
     end
 
     # Only allow a list of trusted parameters through.
     def analytic_params
-      params.require(:analytic).permit(:data, :User_id)
+      params.require(:analytic).permit(:data, :user_id)
     end
 end

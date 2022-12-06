@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :articles
 
   authenticated :user do
-    root :to => 'articles#index', as: :authenticated_root
+    root :to => 'analytics#index', as: :authenticated_root
   end
 
   root "users#index"
