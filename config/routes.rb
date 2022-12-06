@@ -1,7 +1,9 @@
 Rails.application.routes.draw do  
-  resources :analytics
   devise_for :users
   
+  resources :users do 
+    resources :analytics
+  end
   resources :articles
 
   authenticated :user do
